@@ -7,40 +7,44 @@
 
 import SwiftUI
 
-// The Codable struct, this should allow me to fetch JSON and convert it into a Swift object to work with.
+/* The Stocks struct will hold the JSON data output
+ *
+ * Codable: To work with JSON objects
+ * Identifiable: We'll work with unique tickers
+ */
 struct Stocks: Codable, Identifiable {
-    
-    //var id: Int // Added by the fixer when I used the Identifiable protocol. TODO: Reasearch more. If I take this off, I see the previous error in ContentView and the build fails.
-    
-    //var ticker: String
+
     var id: Int
     var ticker : String
     var rsi: String
     var signal: String
 }
 
-
+/*
+ * ObservableObject: As our stocks variable needs to be updated right away (TODO: does it in this case?) when there's a change, we use the @Published property, this requires our class to follow ObservableObject protocol.
+ */
 class FetchStocks: ObservableObject {
-    // 1. when the published property will be changed, a signal will be send which will update the List in the ContentView.
+    // 1. When the @Published property changes, a signal will be sent so the List within the ContentView is updated
     @Published var stocks = [Stocks]()
-    
+    // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
     init() {
         let url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-06-25-rsi.json")!
         
-        // 2. A task is created which retrieves the contents of the json file
-        // Receives response data into memory rather than downloading + storing into the file system (URLSessionDownloadTask)
+        // 2. We create a task to retrieve the contents of the JSON file, we'll use the shared URLSession is a basic request that requires no further config:
         URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
             do {
+                // Question: I understand the "if let/else" is used to unwrap an optional, however there's no optional. The intention is the same though: If stockData contains data, decode it and dispatch it to the main thread queue. Otherwise return "no data".
                 if let stockData = data {
                     // 3. The data is decoded to an array of Stock items and assigned to the stocks property.
                     let decodedData = try JSONDecoder().decode([Stocks].self, from: stockData)
+                    // The task is added to the queue in the main thread of the current process, and will be executed immediately
                     DispatchQueue.main.async{
-                        // Back to the main thread
                         self.stocks = decodedData
                     }
                     print(stockData)
                 } else {
-                    print("No data")
+                    print("No stock data")
                 }
             } catch {
                 print("Error")
@@ -51,7 +55,7 @@ class FetchStocks: ObservableObject {
 
 struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
-    @ObservedObject var fetch = FetchStocks()
+    @ObservedObject var fetchedObject = FetchStocks()
     
     // We declare the structure where we want to load the JSON into, in this case an array of Stock objects
     //var stocks = [Stocks]()
@@ -60,7 +64,7 @@ struct ContentView: View {
         Text("Hello!")
         VStack {
             // 2. A list is created containing the todo items
-            List(fetch.stocks) {stock in
+            List(fetchedObject.stocks) {stock in
                 VStack(alignment: .leading){
                     Text(stock.ticker) // ticker
                     Text(stock.rsi)
