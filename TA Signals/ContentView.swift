@@ -57,20 +57,29 @@ struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
     @ObservedObject var fetchedObject = FetchStocks()
     
+    func fetchUpdate() -> Void{
+        // TODO: empty for now, fetched data + update "Text("Updated: 2021-06-25")" text
+    }
+    
     // We declare the structure where we want to load the JSON into, in this case an array of Stock objects
     //var stocks = [Stocks]()
     
     var body: some View {
-        Text("Hello!")
-        VStack {
-            // 2. A list is created containing the todo items
-            List(fetchedObject.stocks) {stock in
-                VStack(alignment: .leading){
-                    Text(stock.ticker) // ticker
-                    Text(stock.rsi)
-                    Text(stock.signal)
+        NavigationView{
+            VStack {
+                Button("Fetch", action: fetchUpdate).font(.title2).padding()
+                Text("Last Updated: 2021-06-25").font(.caption)
+                // 2. A list is created containing the todo items
+                List(fetchedObject.stocks) {stock in
+                    VStack(alignment: .leading){
+                        Text(stock.ticker) // ticker
+                        Text(stock.rsi)
+                        Text(stock.signal)
+                    }
                 }
             }
+            .navigationTitle("TA Signals")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 
