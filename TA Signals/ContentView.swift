@@ -57,7 +57,16 @@ struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
     @ObservedObject var fetchedObject = FetchStocks()
     
-    @State private var lastUpdate = Date()
+    let now = Date()
+    
+    private var isMarketOpen : Bool = false
+    private var openOrClosed : String {
+        if isMarketOpen == true {
+            return "Open"
+        } else {
+            return "Closed"
+        }
+    }
     
     func fetchUpdate() -> Void{
         // TODO: empty for now, fetched data + update "Text("Updated: 2021-06-25")" text
@@ -68,26 +77,31 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView{
-            VStack {
-                Button("Fetch", action: fetchUpdate).font(.title2).padding()
-                Text("Last Updated: 2021-06-25").font(.caption)
-                // 2. A list is created containing the todo items
-                List(fetchedObject.stocks) {stock in
-                    VStack(alignment: .leading){
-                        HStack(spacing: 25){
-                            Text(stock.ticker)
-                            //Divider()
-                            Text(stock.rsi)
-                            //Divider()
-                            Text(stock.signal)
+            //ScrollView(.vertical){ TODO: --> Adding ScrollView doesn't fetch data
+                VStack {
+                    Button("Fetch", action: fetchUpdate).font(.title2).padding()
+                    Text("Market is \(openOrClosed)").font(.caption)
+                    //Image(systemName: "task")
+                    Text("Now: \(now, style: .date)").font(.caption)
+                    Text("Last Fetch: June 25, 2021").font(.caption)
+                    // 2. A list is created containing the todo items
+                    List(fetchedObject.stocks) {stock in
+                        VStack(alignment: .leading){
+                            HStack(spacing: 25){
+                                Text(stock.ticker)
+                                //Divider()
+                                Text(stock.rsi)
+                                //Divider()
+                                Text(stock.signal)
+                            }
+                            Divider()
                         }
-                        Divider()
                     }
                 }
+                .navigationTitle("TA Signals")
+                .navigationBarTitleDisplayMode(.inline)
             }
-            .navigationTitle("TA Signals")
-            .navigationBarTitleDisplayMode(.inline)
-        }
+        //}
     }
 
 }
