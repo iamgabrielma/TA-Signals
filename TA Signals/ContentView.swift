@@ -27,6 +27,7 @@ class FetchStocks: ObservableObject {
     // 1. When the @Published property changes, a signal will be sent so the List within the ContentView is updated
     @Published var stocks = [Stocks]()
     // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
+    
     init() {
         let url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-06-25-rsi.json")!
         
@@ -68,6 +69,12 @@ struct ContentView: View {
         }
     }
     
+    func test_styling(item: String) -> Text {
+        
+        var styledSignal : Text = Text(item).foregroundColor(.red)
+        return styledSignal
+    }
+    
     func fetchUpdate() -> Void{
         // TODO: empty for now, fetched data + update "Text("Updated: 2021-06-25")" text
     }
@@ -92,7 +99,8 @@ struct ContentView: View {
                                 //Divider()
                                 Text(stock.rsi)
                                 //Divider()
-                                Text(stock.signal)
+                                //Text(stock.signal)
+                                (test_styling(item: stock.signal))
                             }
                             Divider()
                         }
