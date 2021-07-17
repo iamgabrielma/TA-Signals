@@ -57,6 +57,8 @@ struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
     @ObservedObject var fetchedObject = FetchStocks()
     
+    @State private var lastUpdate = Date()
+    
     func fetchUpdate() -> Void{
         // TODO: empty for now, fetched data + update "Text("Updated: 2021-06-25")" text
     }
@@ -72,9 +74,14 @@ struct ContentView: View {
                 // 2. A list is created containing the todo items
                 List(fetchedObject.stocks) {stock in
                     VStack(alignment: .leading){
-                        Text(stock.ticker) // ticker
-                        Text(stock.rsi)
-                        Text(stock.signal)
+                        HStack(spacing: 25){
+                            Text(stock.ticker)
+                            //Divider()
+                            Text(stock.rsi)
+                            //Divider()
+                            Text(stock.signal)
+                        }
+                        Divider()
                     }
                 }
             }
