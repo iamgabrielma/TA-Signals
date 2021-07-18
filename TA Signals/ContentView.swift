@@ -23,7 +23,8 @@ struct Stocks: Codable, Identifiable {
 /*
  * ObservableObject: As our stocks variable needs to be updated right away (TODO: does it in this case?) when there's a change, we use the @Published property, this requires our class to follow ObservableObject protocol.
  */
-class FetchStocks: ObservableObject {
+//class FetchStocks: ObservableObject {
+class FetchStocks {
     // 1. When the @Published property changes, a signal will be sent so the List within the ContentView is updated
     @Published var stocks = [Stocks]()
     // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
@@ -56,8 +57,10 @@ class FetchStocks: ObservableObject {
 
 struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
-    @ObservedObject var fetchedObject = FetchStocks()
-    
+    @State var fetchedObject = FetchStocks()
+    @State var showFetchDetails : Bool = false
+    //@ObservedObject var fetchedObject = FetchStocks()
+    // Change to how data is pulled:I'm not positive I need an @ObservedObject here, as we'll pulling the data on "Fetch". This is on purpose as I'll only make the data available on daily ( or so ) intervals.
     let now = Date()
     
     private var isMarketOpen : Bool = false
@@ -77,6 +80,7 @@ struct ContentView: View {
     
     func fetchUpdate() -> Void{
         // TODO: empty for now, fetched data + update "Text("Updated: 2021-06-25")" text
+        showFetchDetails.toggle()
     }
     
     // We declare the structure where we want to load the JSON into, in this case an array of Stock objects
@@ -91,19 +95,21 @@ struct ContentView: View {
                     //Image(systemName: "task")
                     Text("Now: \(now, style: .date)").font(.caption)
                     Text("Last Fetch: June 25, 2021").font(.caption)
-                    // 2. A list is created containing the todo items
-                    List(fetchedObject.stocks) {stock in
-                        VStack(alignment: .leading){
-                            HStack(spacing: 25){
-                                Text(stock.ticker)
-                                //Divider()
-                                Text(stock.rsi)
-                                //Divider()
-                                //Text(stock.signal)
-                                (test_styling(item: stock.signal))
+                    if showFetchDetails {
+                        // 2. A list is created containing the todo items
+                        List(fetchedObject.stocks) {stock in
+                            VStack(alignment: .leading){
+                                HStack(spacing: 25){
+                                    Text(stock.ticker)
+                                    //Divider()
+                                    Text(stock.rsi)
+                                    //Divider()
+                                    //Text(stock.signal)
+                                    (test_styling(item: stock.signal))
+                                }
+                                Divider()
                             }
-                            Divider()
-                        }
+                        }// <!-- List
                     }
                 }
                 .navigationTitle("TA Signals")
