@@ -72,9 +72,22 @@ struct ContentView: View {
         }
     }
     
-    func test_styling(item: String) -> Text {
+    func test_styling(item: String, type: String) -> Text {
         
-        var styledSignal : Text = Text(item).foregroundColor(.red)
+        var styledSignal : Text = Text(item)
+        
+        if type == "signal" {
+            styledSignal = Text(item).foregroundColor(.red)
+        }
+        else if type == "rsi" {
+            //styledSignal = Text("\(item, specifier:"%.2f")")
+            // --> cutting down the decimals here doesn't work, but I'll want to do the calculation in the backe-end anyway.
+            styledSignal = Text("\(item)" as String)
+        }
+        else {
+            styledSignal = Text(item)
+        }
+        
         return styledSignal
     }
     
@@ -97,19 +110,32 @@ struct ContentView: View {
                     Text("Last Fetch: June 25, 2021").font(.caption)
                     if showFetchDetails {
                         // 2. A list is created containing the todo items
-                        List(fetchedObject.stocks) {stock in
+
+                        //Section(header: Text("header")){
+                        //Text("Header outside the list")
+                        
+                        List(fetchedObject.stocks) { stock in
                             VStack(alignment: .leading){
                                 HStack(spacing: 25){
                                     Text(stock.ticker)
                                     //Divider()
-                                    Text(stock.rsi)
+                                    //Text(stock.rsi)
+                                    (test_styling(item: stock.rsi, type: "rsi"))
                                     //Divider()
                                     //Text(stock.signal)
-                                    (test_styling(item: stock.signal))
+                                    // Adding more fields as part of the JSON data that we'll be displaying:
+                                    VStack(){
+                                        (test_styling(item: stock.signal, type: "signal"))
+                                        Text("EMA100: xxx")
+                                        Text("EMA200: xxx")
+                                    }
+                                    
                                 }
                                 Divider()
                             }
                         }// <!-- List
+                    //} //! -- Section && Text attempt
+
                     }
                 }
                 .navigationTitle("TA Signals")
