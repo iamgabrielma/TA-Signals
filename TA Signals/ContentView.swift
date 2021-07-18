@@ -17,6 +17,8 @@ struct Stocks: Codable, Identifiable {
     var id: Int
     var ticker : String
     var rsi: String
+    var ema100: String
+    var ema200: String
     var signal: String
 }
 
@@ -30,6 +32,9 @@ class FetchStocks {
     // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
     
     init() {
+        // Original:
+//        let url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-06-25-rsi.json")!
+        // Alternative, with new fields:
         let url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-06-25-rsi.json")!
         
         // 2. We create a task to retrieve the contents of the JSON file, we'll use the shared URLSession is a basic request that requires no further config:
@@ -82,7 +87,7 @@ struct ContentView: View {
         else if type == "rsi" {
             //styledSignal = Text("\(item, specifier:"%.2f")")
             // --> cutting down the decimals here doesn't work, but I'll want to do the calculation in the backe-end anyway.
-            styledSignal = Text("\(item)" as String)
+            styledSignal = Text("RSI: \(item)" as String)
         }
         else {
             styledSignal = Text(item)
@@ -120,20 +125,22 @@ struct ContentView: View {
                                     Text(stock.ticker)
                                     //Divider()
                                     //Text(stock.rsi)
-                                    (test_styling(item: stock.rsi, type: "rsi"))
+                                    //(test_styling(item: stock.rsi, type: "rsi"))
                                     //Divider()
                                     //Text(stock.signal)
                                     // Adding more fields as part of the JSON data that we'll be displaying:
+                                    (test_styling(item: stock.signal, type: "signal"))
                                     VStack(){
-                                        (test_styling(item: stock.signal, type: "signal"))
-                                        Text("EMA100: xxx")
-                                        Text("EMA200: xxx")
+                                        (test_styling(item: stock.rsi, type: "rsi"))
+                                        Text("EMA100: \(stock.ema100)")
+                                        Text("EMA200: \(stock.ema200)")
                                     }
                                     
                                 }
                                 Divider()
                             }
                         }// <!-- List
+                        Text("This is not financial or investment advice. The Content is for informational purposes only.").font(.caption)
                     //} //! -- Section && Text attempt
 
                     }
