@@ -14,6 +14,7 @@ struct Stocks: Codable, Identifiable {
 
     var id: Int
     var ticker : String
+    // TODO: https://github.com/iamgabrielma/TA-Signals/issues/4
     var rsi: String
     var ema100: String
     var ema200: String
@@ -24,19 +25,18 @@ struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
     @State var fetchedObject = FetchStocks()
     @State var showFetchDetails : Bool = false
-    //@ObservedObject var fetchedObject = FetchStocks()
-    // Change to how data is pulled:I'm not positive I need an @ObservedObject here, as we'll pulling the data on "Fetch". This is on purpose as I'll only make the data available on daily ( or so ) intervals.
+    @State var isMarketOpen : Bool = true
     let now = Date()
     
-    private var isMarketOpen : Bool = false
-    private var openOrClosed : String {
-        if isMarketOpen {
-            return "Open"
+    // TODO: https://github.com/iamgabrielma/TA-Signals/issues/5
+    func openOrClosed(b : Bool) -> String{
+        if (b){
+            return "open"
         } else {
-            return "Closed"
+            return "closed"
         }
     }
-    
+    // TODO: https://github.com/iamgabrielma/TA-Signals/issues/6
     func test_styling(item: String, type: String) -> Text {
         
         var styledSignal : Text = Text(item)
@@ -45,8 +45,6 @@ struct ContentView: View {
             styledSignal = Text(item).foregroundColor(.red)
         }
         else if type == "rsi" {
-            //styledSignal = Text("\(item, specifier:"%.2f")")
-            // --> cutting down the decimals here doesn't work, but I'll want to do the calculation in the backe-end anyway.
             styledSignal = Text("RSI: \(item)" as String)
         }
         else {
@@ -57,45 +55,31 @@ struct ContentView: View {
     }
     
     func fetchUpdate() -> Void{
-        // TODO: empty for now, fetched data + update "Text("Updated: 2021-06-25")" text
+        // TODO: https://github.com/iamgabrielma/TA-Signals/issues/7
         showFetchDetails.toggle()
     }
     
-    // We declare the structure where we want to load the JSON into, in this case an array of Stock objects
-    //var stocks = [Stocks]()
-    
     var body: some View {
+        // TODO: https://github.com/iamgabrielma/TA-Signals/issues/1
         NavigationView{
-            //ScrollView(.vertical){ TODO: --> Adding ScrollView doesn't fetch data
                 VStack {
+                    // TODO: https://github.com/iamgabrielma/TA-Signals/issues/2
                     Button("Fetch", action: fetchUpdate).font(.title2).padding()
-                    Text("Market is \(openOrClosed)").font(.caption)
-                    //Image(systemName: "task")
+                    Text("Market is \(openOrClosed(b: isMarketOpen))").font(.caption)
                     Text("Now: \(now, style: .date)").font(.caption)
                     Text("Last Fetch: June 25, 2021").font(.caption)
                     if showFetchDetails {
                         // 2. A list is created containing the todo items
-
-                        //Section(header: Text("header")){
-                        //Text("Header outside the list")
-                        
                         List(fetchedObject.stocks) { stock in
                             VStack(alignment: .leading){
                                 HStack(spacing: 25){
                                     Text(stock.ticker)
-                                    //Divider()
-                                    //Text(stock.rsi)
-                                    //(test_styling(item: stock.rsi, type: "rsi"))
-                                    //Divider()
-                                    //Text(stock.signal)
-                                    // Adding more fields as part of the JSON data that we'll be displaying:
                                     (test_styling(item: stock.signal, type: "signal"))
                                     VStack(){
                                         (test_styling(item: stock.rsi, type: "rsi"))
                                         Text("EMA100: \(stock.ema100)")
                                         Text("EMA200: \(stock.ema200)")
                                     }
-                                    
                                 }
                                 Divider()
                             }
@@ -108,7 +92,6 @@ struct ContentView: View {
                 .navigationTitle("TA Signals")
                 .navigationBarTitleDisplayMode(.inline)
             }
-        //}
     }
 
 }

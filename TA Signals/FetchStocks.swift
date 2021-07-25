@@ -6,10 +6,11 @@
 //
 
 import Foundation
-
 /*
  * ObservableObject: As our stocks variable needs to be updated right away (TODO: does it in this case?) when there's a change, we use the @Published property, this requires our class to follow ObservableObject protocol.
  */
+
+
 class FetchStocks {
     // 1. When the @Published property changes, a signal will be sent so the List within the ContentView is updated
     @Published var stocks = [Stocks]()
