@@ -11,9 +11,9 @@ import Foundation
  */
 
 
-class FetchStocks {
+class StocksDataFetcher {
     // 1. When the @Published property changes, a signal will be sent so the List within the ContentView is updated
-    @Published var stocks = [Stocks]()
+    @Published var stocks = [Stock]()
     // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
     
     init() {
@@ -29,7 +29,7 @@ class FetchStocks {
                 // Question: I understand the "if let/else" is used to unwrap an optional, however there's no optional. The intention is the same though: If stockData contains data, decode it and dispatch it to the main thread queue. Otherwise return "no data".
                 if let stockData = data {
                     // 3. The data is decoded to an array of Stock items and assigned to the stocks property.
-                    let decodedData = try JSONDecoder().decode([Stocks].self, from: stockData)
+                    let decodedData = try JSONDecoder().decode([Stock].self, from: stockData)
                     // The task is added to the queue in the main thread of the current process, and will be executed immediately
                     DispatchQueue.main.async{
                         self.stocks = decodedData

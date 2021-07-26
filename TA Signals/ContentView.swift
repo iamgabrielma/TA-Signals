@@ -7,23 +7,9 @@
 
 import SwiftUI
 
-/*
- * The Stocks struct will hold the JSON data output. Conforms to Codable and Identifiable protocols in order to work properly with JSON objects
- */
-struct Stocks: Codable, Identifiable {
-
-    var id: Int
-    var ticker : String
-    // TODO: https://github.com/iamgabrielma/TA-Signals/issues/4
-    var rsi: String
-    var ema100: String
-    var ema200: String
-    var signal: String
-}
-
 struct ContentView: View {
     // 1. The fetch property will observe the FetchToDo class for changes
-    @State var fetchedObject = FetchStocks()
+    @State var fetchedObject = StocksDataFetcher()
     @State var showFetchDetails : Bool = false
     @State var isMarketOpen : Bool = true
     let now = Date()
