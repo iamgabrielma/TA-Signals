@@ -57,18 +57,20 @@ struct ContentView: View {
                     if showFetchDetails {
                         // 2. A list is created containing the todo items
                         List(fetchedObject.stocks) { stock in
-                            VStack(alignment: .leading){
-                                HStack(spacing: 25){
-                                    Text(stock.ticker)
-                                    (test_styling(item: stock.signal, type: "signal"))
-                                    VStack(){
-                                        (test_styling(item: stock.rsi, type: "rsi"))
-                                        Text("EMA100: \(stock.ema100)")
-                                        Text("EMA200: \(stock.ema200)")
-                                    }
-                                }
-                                Divider()
-                            }
+                            // Implement custom view via StockListCell.swift:
+                            StockListCell(stock: stock)
+//                            VStack(alignment: .leading){
+//                                HStack(spacing: 25){
+//                                    Text(stock.ticker)
+//                                    (test_styling(item: stock.signal, type: "signal"))
+//                                    VStack(){
+//                                        (test_styling(item: stock.rsi, type: "rsi"))
+//                                        Text("EMA100: \(stock.ema100)")
+//                                        Text("EMA200: \(stock.ema200)")
+//                                    }
+//                                }
+//                                Divider()
+//                            }
                         }// <!-- List
                         Text("This is not financial or investment advice. The Content is for informational purposes only.").font(.caption)
                     //} //! -- Section && Text attempt
