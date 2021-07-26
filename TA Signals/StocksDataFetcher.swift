@@ -13,9 +13,10 @@ import Foundation
 
 class StocksDataFetcher {
     // 1. When the @Published property changes, a signal will be sent so the List within the ContentView is updated
+    // The variable stocks contains an array of Stock objects
     @Published var stocks = [Stock]()
-    // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
     
+    // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
     init() {
         // Original:
 //        let url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-06-25-rsi.json")!

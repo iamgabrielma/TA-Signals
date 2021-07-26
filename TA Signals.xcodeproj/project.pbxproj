@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		680E0DA326AD3C6000D06D28 /* StocksDataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E0DA226AD3C6000D06D28 /* StocksDataFetcher.swift */; };
 		6851BA6A26AEE84A00E52C4B /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851BA6926AEE84A00E52C4B /* Stock.swift */; };
+		6851BA6C26AEEE6B00E52C4B /* StockListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6851BA6B26AEEE6B00E52C4B /* StockListCell.swift */; };
 		6865F1542684448B00C098B1 /* TA_SignalsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6865F1532684448B00C098B1 /* TA_SignalsApp.swift */; };
 		6865F1562684448B00C098B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6865F1552684448B00C098B1 /* ContentView.swift */; };
 		6865F1582684448D00C098B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6865F1572684448D00C098B1 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		680E0DA226AD3C6000D06D28 /* StocksDataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StocksDataFetcher.swift; sourceTree = "<group>"; };
 		6851BA6926AEE84A00E52C4B /* Stock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
+		6851BA6B26AEEE6B00E52C4B /* StockListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockListCell.swift; sourceTree = "<group>"; };
 		6865F1502684448B00C098B1 /* TA Signals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TA Signals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6865F1532684448B00C098B1 /* TA_SignalsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA_SignalsApp.swift; sourceTree = "<group>"; };
 		6865F1552684448B00C098B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				6865F1592684448D00C098B1 /* Preview Content */,
 				680E0DA226AD3C6000D06D28 /* StocksDataFetcher.swift */,
 				6851BA6926AEE84A00E52C4B /* Stock.swift */,
+				6851BA6B26AEEE6B00E52C4B /* StockListCell.swift */,
 			);
 			path = "TA Signals";
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				6865F1562684448B00C098B1 /* ContentView.swift in Sources */,
 				6865F1542684448B00C098B1 /* TA_SignalsApp.swift in Sources */,
+				6851BA6C26AEEE6B00E52C4B /* StockListCell.swift in Sources */,
 				6851BA6A26AEE84A00E52C4B /* Stock.swift in Sources */,
 				680E0DA326AD3C6000D06D28 /* StocksDataFetcher.swift in Sources */,
 			);
