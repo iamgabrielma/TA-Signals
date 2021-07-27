@@ -14,13 +14,18 @@ struct ContentView: View {
         TabView{
             TempMainView()
                 .tabItem {
-                    Image(systemName: "checkmark.circle")
+                    Image(systemName: "house") // * SF symbols
                     Text("Main")
             }
             TempEmptyView()
                 .tabItem {
-                    Image(systemName: "checkmark.circle")
+                    Image(systemName: "folder")
                     Text("Empty")
+            }
+            TempSettingsView()
+                .tabItem {
+                    Image(systemName: "gear")
+                    Text("Settings")
             }
         }
     }

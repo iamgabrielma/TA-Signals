@@ -24,7 +24,7 @@ struct TempMainView: View {
         } else {
             print("TODO: If market is open, check if there's new data to pull")
         }
-        showFetchDetails.toggle()
+        //showFetchDetails.toggle()
     }
     
     var body: some View {
@@ -38,12 +38,8 @@ struct TempMainView: View {
                             Text("Market is \(openOrClosed ? "Open" : "Closed")").font(.caption)
                             Text("Now: \(now, style: .date)").font(.caption)
                             Text("Last Fetch: June 25, 2021").font(.caption)
-                            
-                            if showFetchDetails {
-                                // 2. A list is created containing the todo items
-                                List(fetchedObject.stocks) { stock in
-                                    StockListCell(stock: stock)
-                                }
+                            List(fetchedObject.stocks) { stock in
+                                StockListCell(stock: stock)
                             }
                         }
                         .navigationTitle("TA Signals")
@@ -54,7 +50,7 @@ struct TempMainView: View {
                         }
 
                     }
-                }
+            }.onAppear(perform: fetchUpdate) // I do not need the initial fetch screen, just to call fetchUpdate as soon as the View loads.
         }
     }
 }
