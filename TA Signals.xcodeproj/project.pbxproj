@@ -16,9 +16,11 @@
 		6865F15B2684448D00C098B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6865F15A2684448D00C098B1 /* Preview Assets.xcassets */; };
 		6865F1662684448D00C098B1 /* TA_SignalsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6865F1652684448D00C098B1 /* TA_SignalsTests.swift */; };
 		6865F1712684448D00C098B1 /* TA_SignalsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6865F1702684448D00C098B1 /* TA_SignalsUITests.swift */; };
-		6872FBCF26AFB79500CE3D02 /* TempEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6872FBCE26AFB79500CE3D02 /* TempEmptyView.swift */; };
-		6872FBD126AFB84100CE3D02 /* TempMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6872FBD026AFB84100CE3D02 /* TempMainView.swift */; };
-		68D8884426B0080B009B3491 /* TempSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D8884326B0080B009B3491 /* TempSettingsView.swift */; };
+		68D98C6B26BAC1BF009EE652 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D98C6A26BAC1BF009EE652 /* AppConstants.swift */; };
+		68D98C6F26BAC1D3009EE652 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D98C6C26BAC1D2009EE652 /* SelectionView.swift */; };
+		68D98C7026BAC1D3009EE652 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D98C6D26BAC1D3009EE652 /* MainView.swift */; };
+		68D98C7126BAC1D3009EE652 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D98C6E26BAC1D3009EE652 /* SettingsView.swift */; };
+		68D98C7326BAC1EA009EE652 /* TASettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D98C7226BAC1EA009EE652 /* TASettings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +56,11 @@
 		6865F16C2684448D00C098B1 /* TA SignalsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TA SignalsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6865F1702684448D00C098B1 /* TA_SignalsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TA_SignalsUITests.swift; sourceTree = "<group>"; };
 		6865F1722684448D00C098B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6872FBCE26AFB79500CE3D02 /* TempEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempEmptyView.swift; sourceTree = "<group>"; };
-		6872FBD026AFB84100CE3D02 /* TempMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempMainView.swift; sourceTree = "<group>"; };
-		68D8884326B0080B009B3491 /* TempSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempSettingsView.swift; sourceTree = "<group>"; };
+		68D98C6A26BAC1BF009EE652 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		68D98C6C26BAC1D2009EE652 /* SelectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		68D98C6D26BAC1D3009EE652 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		68D98C6E26BAC1D3009EE652 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		68D98C7226BAC1EA009EE652 /* TASettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TASettings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,11 @@
 		6865F1522684448B00C098B1 /* TA Signals */ = {
 			isa = PBXGroup;
 			children = (
+				68D98C7226BAC1EA009EE652 /* TASettings.swift */,
+				68D98C6D26BAC1D3009EE652 /* MainView.swift */,
+				68D98C6C26BAC1D2009EE652 /* SelectionView.swift */,
+				68D98C6E26BAC1D3009EE652 /* SettingsView.swift */,
+				68D98C6A26BAC1BF009EE652 /* AppConstants.swift */,
 				6865F1532684448B00C098B1 /* TA_SignalsApp.swift */,
 				6865F1552684448B00C098B1 /* ContentView.swift */,
 				6865F1572684448D00C098B1 /* Assets.xcassets */,
@@ -115,9 +124,6 @@
 				680E0DA226AD3C6000D06D28 /* StocksDataFetcher.swift */,
 				6851BA6926AEE84A00E52C4B /* Stock.swift */,
 				6851BA6B26AEEE6B00E52C4B /* StockListCell.swift */,
-				6872FBCE26AFB79500CE3D02 /* TempEmptyView.swift */,
-				6872FBD026AFB84100CE3D02 /* TempMainView.swift */,
-				68D8884326B0080B009B3491 /* TempSettingsView.swift */,
 			);
 			path = "TA Signals";
 			sourceTree = "<group>";
@@ -277,13 +283,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6872FBD126AFB84100CE3D02 /* TempMainView.swift in Sources */,
 				6865F1562684448B00C098B1 /* ContentView.swift in Sources */,
+				68D98C7326BAC1EA009EE652 /* TASettings.swift in Sources */,
+				68D98C7026BAC1D3009EE652 /* MainView.swift in Sources */,
+				68D98C6B26BAC1BF009EE652 /* AppConstants.swift in Sources */,
+				68D98C7126BAC1D3009EE652 /* SettingsView.swift in Sources */,
 				6865F1542684448B00C098B1 /* TA_SignalsApp.swift in Sources */,
-				68D8884426B0080B009B3491 /* TempSettingsView.swift in Sources */,
 				6851BA6C26AEEE6B00E52C4B /* StockListCell.swift in Sources */,
 				6851BA6A26AEE84A00E52C4B /* Stock.swift in Sources */,
-				6872FBCF26AFB79500CE3D02 /* TempEmptyView.swift in Sources */,
+				68D98C6F26BAC1D3009EE652 /* SelectionView.swift in Sources */,
 				680E0DA326AD3C6000D06D28 /* StocksDataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
