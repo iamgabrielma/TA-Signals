@@ -11,19 +11,19 @@ struct TempMainView: View {
     
     // 1. The fetch property will observe the FetchToDo class for changes
     @State var fetchedObject = StocksDataFetcher()
-    @State var showFetchDetails : Bool = false
-    @State var isMarketOpen : Bool = true
-    @State var openOrClosed : Bool = false
+    @State var showFetchDetails = false
+    //@State var isMarketOpen = true
+    //@State var openOrClosed = false
     
     let now = Date()
 
     func fetchUpdate() -> Void{
         // TODO: https://github.com/iamgabrielma/TA-Signals/issues/7
-        if !openOrClosed {
-            print("TODO: If market is closed just toggle and show old data")
-        } else {
-            print("TODO: If market is open, check if there's new data to pull")
-        }
+//        if !openOrClosed {
+//            print("TODO: If market is closed just toggle and show old data")
+//        } else {
+//            print("TODO: If market is open, check if there's new data to pull")
+//        }
         //showFetchDetails.toggle()
     }
     
@@ -35,7 +35,8 @@ struct TempMainView: View {
                         VStack{
                             // TODO: https://github.com/iamgabrielma/TA-Signals/issues/2
                             Button("Fetch", action: fetchUpdate).font(.title2).padding()
-                            Text("Market is \(openOrClosed ? "Open" : "Closed")").font(.caption)
+                            //Text("Market is \(openOrClosed ? "Open" : "Closed")").font(.caption)
+                            Text("Market is ...")
                             Text("Now: \(now, style: .date)").font(.caption)
                             Text("Last Fetch: June 25, 2021").font(.caption)
                             List(fetchedObject.stocks) { stock in

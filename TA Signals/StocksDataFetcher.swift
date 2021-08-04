@@ -16,17 +16,15 @@ class StocksDataFetcher {
     // The variable stocks contains an array of Stock objects
     @Published var stocks = [Stock]()
     
-    var _feature_flag_json_includes_date: Bool = false
+    var feature_flag_json_includes_date = false
     
     // Classes in Swift do not have memberwise initializers ( like Structs do ) so we need to declare our own:
     init() {
-        
-        var url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-06-25-rsi.json")!
-        if _feature_flag_json_includes_date {
-            url = URL(string: "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/2021-07-27-rsi.json")!
-        }
-
-        
+        // TODO: The source files need some renaming, at the moment:
+        // 2021-06-25-rsi.json -> No date
+        // 2021-06-27-rsi.json -> With date
+        let fileName = feature_flag_json_includes_date ? "2021-07-27-rsi.json" : "2021-06-25-rsi.json"
+        let url = URL(string: AppConstants.baseURL + fileName)!       
         // 2. We create a task to retrieve the contents of the JSON file, we'll use the shared URLSession is a basic request that requires no further config:
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             
