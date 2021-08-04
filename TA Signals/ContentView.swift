@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
+    @EnvironmentObject var appSettings : TASettings
+    
     var body: some View {
         
         TabView{

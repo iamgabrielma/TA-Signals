@@ -9,11 +9,14 @@ import SwiftUI
 
 struct TempMainView: View {
     
+    @StateObject var appSettings = TASettings()
+    
     // 1. The fetch property will observe the FetchToDo class for changes
     @State var fetchedObject = StocksDataFetcher()
     @State var showFetchDetails = false
     //@State var isMarketOpen = true
     //@State var openOrClosed = false
+    
     
     let now = Date()
 
@@ -28,6 +31,9 @@ struct TempMainView: View {
     }
     
     var body: some View {
+        
+        var marketStatus = appSettings.isMarketOpen ? "Open" : "Closed"
+        
         TabView{
             // TODO: https://github.com/iamgabrielma/TA-Signals/issues/1
             NavigationView{
@@ -36,7 +42,7 @@ struct TempMainView: View {
                             // TODO: https://github.com/iamgabrielma/TA-Signals/issues/2
                             Button("Fetch", action: fetchUpdate).font(.title2).padding()
                             //Text("Market is \(openOrClosed ? "Open" : "Closed")").font(.caption)
-                            Text("Market is ...")
+                            Text("Market is \(marketStatus)")
                             Text("Now: \(now, style: .date)").font(.caption)
                             Text("Last Fetch: June 25, 2021").font(.caption)
                             List(fetchedObject.stocks) { stock in
