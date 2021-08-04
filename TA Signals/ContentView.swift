@@ -14,17 +14,17 @@ struct ContentView: View {
     var body: some View {
         
         TabView{
-            TempMainView()
+            MainView()
                 .tabItem {
                     Image(systemName: "house") // * SF symbols
                     Text("Main")
             }
-            TempEmptyView()
+            SelectionView()
                 .tabItem {
                     Image(systemName: "folder")
-                    Text("Empty")
+                    Text("Selection")
             }
-            TempSettingsView()
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

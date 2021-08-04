@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TempMainView: View {
+struct MainView: View {
     
     @StateObject var appSettings = TASettings()
     
@@ -56,6 +56,6 @@ struct TempMainView: View {
 
 struct TempMainView_Previews: PreviewProvider {
     static var previews: some View {
-        TempMainView()
+        MainView()
     }
 }
