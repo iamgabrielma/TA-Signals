@@ -38,7 +38,7 @@ struct MainView: View {
                             Text("Now: \(now(), style: .date)").font(.caption)
                             Text("Last Fetch: \(lastFetch)").font(.caption)
                             List(fetchedObject.stocks) { stock in
-                                StockListCell(stock: stock)
+                                StockListCell(stock: stock).frame(height: 80)
                             }
                         }
                         .navigationTitle("TA Signals")
