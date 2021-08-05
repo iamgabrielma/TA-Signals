@@ -9,25 +9,48 @@ import XCTest
 @testable import TA_Signals
 
 class TA_SignalsTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func test_fetch_base_url(){
+        
+        let url = AppConstants.baseURL
+        let expectedURL = "https://raw.githubusercontent.com/iamgabrielma/Python-for-stock-market-analysis/main/testData/"
+        
+        XCTAssertEqual(url, expectedURL)
+        
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func test_if_market_open() throws {
+        
+        let appSettings = TASettings()
+        let isMarketOpen = {
+            return appSettings.isMarketOpen
         }
+        // Skip test if market is closed, as will fail:
+        try XCTSkipIf(!isMarketOpen(), "Skipping test, market is closed.")
+        XCTAssertEqual(isMarketOpen(), true)
+
     }
+    
+    func test_if_market_closed() throws {
+        
+        let appSettings = TASettings()
+        let isMarketOpen = {
+            return appSettings.isMarketOpen
+        }
+        // Skip test if market is open, as will fail:
+        try XCTSkipIf(isMarketOpen(), "Skipping test, market is open.")
+        XCTAssertEqual(isMarketOpen(), false)
+
+    }
+
+// WIP
+//    func test_json(){
+//
+//
+//    let stockDataFetcher = StocksDataFetcher()
+//    let response = stockDataFetcher.stocks.isEmpty
+//    XCTAssertEqual(response, false) // Fails, isEmpty = true . init value before fetching data?
+//
+//    }
 
 }
