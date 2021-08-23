@@ -6,21 +6,20 @@ TA Signals is an iOS app developed in SwiftUI as a learning exercise. The app fe
 ### Screenshots
 ----------------
 
-![Work in Progress](https://tilcode.blog/wp-content/uploads/2021/07/temp_ui_ta_signals.jpg)
+| Main Screen |
+|---------------------|
+|![](https://tilcode.blog/wp-content/uploads/2021/08/Screenshot-2021-08-23-at-17.08.19.png)|
+
+| Settings Screen |
+|---------------------|
+|![](https://tilcode.blog/wp-content/uploads/2021/08/Screenshot-2021-08-23-at-17.08.45.png)|
 
 ### Table of Contents
 ---------------------
-* [Description](#description)
 * [How to use](#how-to-use)
-* [Technologies](#technologies)
+* [The tech talk](#the-tech-talk)
 * [What have I learned](#what-have-i-learned)
 * [Author Info](#author-info)
-
-### Description
---------------------
-* A simple app that puts together important trading information under an unified dashboard
-* Programmatic UI
-* MVC design pattern
 
 ### How to use
 --------------------
@@ -32,9 +31,9 @@ TA Signals is an iOS app developed in SwiftUI as a learning exercise. The app fe
 
 ![Overview](https://tilcode.blog/wp-content/uploads/2021/07/overview.jpg)
 
-* A Python script pulls data from the Yahoo Finance API and perform calculations over market data to retrieve $
-* Dumps this data into a JSON object publicly accessible
-* The SwiftUI app fetches that JSON endpoint and display the data in the app UI
+* A Python microservice pulls data from the Yahoo Finance API, then performs the necessary calculations to create the data indicators: RSI, EMA100, and EMA200.
+* The miscroservice then dumps this data into a JSON object, publicly accessible via a web endpoint.
+* The SwiftUI app fetches that JSON object from the microservice endpoint and display the data in the app's interface.
 
 **Where does the data come from?**
 
@@ -47,9 +46,10 @@ TA Signals is an iOS app developed in SwiftUI as a learning exercise. The app fe
 Nothing in the app and/or site constitutes professional and/or financial advice. All the data and indicators are provided for educational purposes only.
 
 
-### Technologies
+### The tech talk
 --------------------
-- SwiftUI
+* SwiftUI
+* Network calls, URLSession, and JSON objects data fetch 
 
 
 ### What have I learned
