@@ -6,13 +6,9 @@ TA Signals is an iOS app developed in SwiftUI as a learning exercise. The app fe
 ### Screenshots
 ----------------
 
-| Main Screen |
-|---------------------|
-|![](https://tilcode.blog/wp-content/uploads/2021/08/Screenshot-2021-08-23-at-17.08.19.png)|
-
-| Settings Screen |
-|---------------------|
-|![](https://tilcode.blog/wp-content/uploads/2021/08/Screenshot-2021-08-23-at-17.08.45.png)|
+| Main Screen | Settings Screen |
+|---------------------|---------------------|
+|![](https://tilcode.blog/wp-content/uploads/2021/08/Screenshot-2021-08-23-at-17.08.19.png)|![](https://tilcode.blog/wp-content/uploads/2021/08/Screenshot-2021-08-23-at-17.08.45.png)|
 
 ### Table of Contents
 ---------------------
